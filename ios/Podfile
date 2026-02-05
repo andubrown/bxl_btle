@@ -1,11 +1,19 @@
-platform :ios, '12.0'
+# ios/Podfile
+
+platform :ios, '13.0'
 
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
-target 'Runner' do
-  use_frameworks!
-  use_modular_headers!
+use_frameworks!
+use_modular_headers!
 
-  # Modern Flutter pods
-  install_all_flutter_pods(File.dirname(File.realpath(__FILE__)))
+target 'Runner' do
+  flutter_install_all_ios_pods
 end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+  end
+end
+
