@@ -4,22 +4,33 @@ workflows:
     environment:
       flutter: stable
       xcode: latest
-      cocoapods: default
+
     scripts:
       - name: Clean and regenerate iOS folder
         script: |
           flutter clean
           rm -rf ios
           flutter create .
+
+      - name: Force Podfile to iOS 15.5
+        script: |
+          sed -i '' "s/platform :ios.*/platform :ios, '15.5'/" ios/Podfile
+
+      - name: Force Xcode project to iOS 15.5
+        script: |
+          sed -i '' "s/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*/IPHONEOS_DEPLOYMENT_TARGET = 15.5/" ios/Runner.xcodeproj/project.pbxproj
+
       - name: Get Flutter dependencies
+        script: flutter pub get
+
+      - name: Install CocoaPods
         script: |
-          flutter pub get
+          cd ios
+          pod install
+          cd ..
+
       - name: Build iOS (debug, no codesign)
-        script: |
-          flutter build ios --debug --no-codesign
+        script: flutter build ios --debug --no-codesign
+
     artifacts:
       - build/ios/iphoneos/*.app
-    publishing:
-      email:
-        recipients:
-          - andubrown@gmail.com
