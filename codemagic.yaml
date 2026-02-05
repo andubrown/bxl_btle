@@ -1,0 +1,25 @@
+workflows:
+  ios_build:
+    name: iOS Debug Build
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Clean and regenerate iOS folder
+        script: |
+          flutter clean
+          rm -rf ios
+          flutter create .
+      - name: Get Flutter dependencies
+        script: |
+          flutter pub get
+      - name: Build iOS (debug, no codesign)
+        script: |
+          flutter build ios --debug --no-codesign
+    artifacts:
+      - build/ios/iphoneos/*.app
+    publishing:
+      email:
+        recipients:
+          - andubrown@gmail.com
