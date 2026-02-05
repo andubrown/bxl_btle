@@ -1,11 +1,13 @@
-platform :ios, '15.5'
+# ios/Podfile
+platform :ios, '12.0'
 
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
-use_frameworks!  # Required for MLKit and some plugins
-
-inhibit_all_warnings!
+require File.join(File.dirname(__FILE__), 'Flutter', 'podhelper.rb')
 
 target 'Runner' do
-  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  use_frameworks!
+  use_modular_headers!
+  
+  install_all_flutter_pods File.dirname(File.realpath(__FILE__))
 end
