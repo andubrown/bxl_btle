@@ -1,13 +1,14 @@
-# ios/Podfile
 platform :ios, '12.0'
 
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
-require File.join(File.dirname(__FILE__), 'Flutter', 'podhelper.rb')
+# Uncomment next line to define a global platform for your project
+# platform :ios, '12.0'
 
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  
-  install_all_flutter_pods File.dirname(File.realpath(__FILE__))
+
+  # Flutter pods
+  flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
 end
