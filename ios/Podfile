@@ -1,20 +1,18 @@
-# ios/Podfile
-
 platform :ios, '15.5'
 
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
-# Enable frameworks and modular headers (needed for some Flutter plugins)
 use_frameworks!
 use_modular_headers!
 
 target 'Runner' do
-  # Flutter automatically manages pods, so no manual install calls
+  # Flutter manages pods automatically
+  flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
 end
 
-# Post-install adjustments for Flutter plugins
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
+    # Flutter handles build settings automatically, no need for undefined method
   end
 end
+
