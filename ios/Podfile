@@ -2,13 +2,10 @@ platform :ios, '12.0'
 
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
-# Uncomment next line to define a global platform for your project
-# platform :ios, '12.0'
-
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  # Flutter pods
-  flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
+  # Modern Flutter pods
+  install_all_flutter_pods(File.dirname(File.realpath(__FILE__)))
 end
