@@ -1,0 +1,52 @@
+name: ble_canopen_app
+description: "BLE + CANopen Flutter app"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_reactive_ble: ^5.4.0
+  permission_handler: ^12.0.1
+  path_provider: ^2.1.5
+  shared_preferences: ^2.1.1
+  google_mlkit_commons: ^0.11.0
+  google_mlkit_text_recognition: ^0.15.0
+  camera: ^0.11.3
+  image: ^4.5.4
+  share_plus: ^12.0.1     # works with Flutter 3.4.x
+  pdf: ^3.10.3
+  printing: ^5.10.0
+  pdfx: ^2.9.2
+  qr: ^3.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/bxllogo.png 
+    - assets/swing.png
+    - assets/start.png
+    - assets/transportok_swinglift.png
+    - assets/stabnok_swinglift.png
+    - assets/logo_customer.png
+    - assets/boxloader.png
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/bxllogo.png"
+
+
