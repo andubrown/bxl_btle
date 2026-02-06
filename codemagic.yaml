@@ -32,5 +32,13 @@ workflows:
       - name: Build iOS (debug, no codesign)
         script: flutter build ios --debug --no-codesign
 
+      - name: Package app as IPA for Sideloadly
+        script: |
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -r Runner.app Payload/
+          zip -r Runner.ipa Payload
+          cd ../../../..
+
     artifacts:
-      - build/ios/iphoneos/*.app
+      - build/ios/iphoneos/Runner.ipa
